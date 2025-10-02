@@ -32,6 +32,6 @@ public class inventoryitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 
 
-
+    //6:31 on vid 
 
 }
