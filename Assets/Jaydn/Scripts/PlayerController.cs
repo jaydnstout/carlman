@@ -21,9 +21,6 @@ public class PlayerController : MonoBehaviour
     public int health = 100;
     public int stamina = 100;
 
-    public float minCamRotationX = -50f;
-    public float maxCamRotationX = 90f;
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
