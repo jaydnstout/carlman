@@ -3,26 +3,31 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    // Variables to manage door state and rotation
+    // Door settings
     [Header("Door Settings")]
-    float rotationYStart;
-    bool touchingPointer = false;
+    public float rotationYStart;
     public bool isLocked;
     public GameObject key;
-    bool isOpen = false;
 
+    float scaleX;
+    GameObject pointer;
+    bool interactable = false;
+    bool isOpen = false;
+    
     private void Start()
     {
-        // Store the initial Y rotation of the door
-        rotationYStart = transform.rotation.y;
+        // Initialize door rotation
+        scaleX = transform.localScale.x;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         // Allow the door to be opened when the pointer enters the trigger
         if (other.gameObject.tag == "Pointer")
         {
-            touchingPointer = true;
+            pointer = other.gameObject;
+
+            interactable = true;
         }
     }
 
@@ -31,14 +36,14 @@ public class Door : MonoBehaviour
         // Stop the door from being openable when the pointer leaves the trigger
         if (other.gameObject.tag == "Pointer")
         {
-            touchingPointer = false;
+            interactable = false;
         }
     }
 
     void Update()
     {
         // Toggle door state on mouse click if it can be opened
-        if (Input.GetMouseButtonDown(0) && touchingPointer)
+        if (Input.GetMouseButtonDown(0) && interactable)
         {
             if (isLocked)
             {
@@ -54,12 +59,12 @@ public class Door : MonoBehaviour
         if (isOpen)
         {
             // Rotate the door to open position
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, rotationYStart - 180, 0), Time.deltaTime * 5);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, rotationYStart - (90 * scaleX), 0), Time.deltaTime * 5);
         }
         else
         {
             // Rotate the door to closed position
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, rotationYStart - 90, 0), Time.deltaTime * 5);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, rotationYStart, 0), Time.deltaTime * 5);
         }
     }
 }

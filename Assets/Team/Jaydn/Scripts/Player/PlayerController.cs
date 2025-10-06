@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
                 {
                     // If moving and has stamina, use run speed and drain stamina
                     moveSpeed = runSpeed;
-                    ps.stamina -= 0.16f;
+                    ps.stamina -= 10 * Time.deltaTime;
                 }
                 else
                 {
@@ -81,7 +81,9 @@ public class PlayerController : MonoBehaviour
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-            transform.Translate(movement * moveSpeed * Time.deltaTime, Space.Self);
+            Vector3 velocity = transform.TransformDirection(movement) * moveSpeed;
+            velocity.y = rb.linearVelocity.y; // Preserve existing vertical velocity
+            rb.linearVelocity = velocity;
 
             // Jumping
             if (Input.GetButtonDown("Jump") && isGrounded)

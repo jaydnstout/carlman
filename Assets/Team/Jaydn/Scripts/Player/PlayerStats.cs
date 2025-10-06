@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviour
         // Regenerate stamina over time
         if (stamina < maxStamina && Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
-            stamina += 0.08f;
+            stamina += 5 * Time.deltaTime;
         }
 
         // Determine fall direction for death animation
