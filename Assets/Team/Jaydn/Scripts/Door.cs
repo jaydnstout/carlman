@@ -10,13 +10,12 @@ public class Door : MonoBehaviour
     public GameObject key;
 
     float scaleX;
-    GameObject pointer;
     bool interactable = false;
     bool isOpen = false;
     
-    private void Start()
+    void Start()
     {
-        // Initialize door rotation
+        // Set initial rotation and find the pointer object
         scaleX = transform.localScale.x;
     }
 
@@ -25,8 +24,6 @@ public class Door : MonoBehaviour
         // Allow the door to be opened when the pointer enters the trigger
         if (other.gameObject.tag == "Pointer")
         {
-            pointer = other.gameObject;
-
             interactable = true;
         }
     }
