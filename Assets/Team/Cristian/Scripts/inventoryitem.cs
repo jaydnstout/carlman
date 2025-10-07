@@ -24,7 +24,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 
 
-    //all this code allows you to drage the item around and resets it into a the item slot if its droped outside the inventory slot.
+    //all this code allows you to drage the item around and resets it into a the item slot if its droped outside the inventory slot. - cristian
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
@@ -40,5 +40,5 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
     }
-
+    //lowkey i don't think were going to need any of this code so ima just leave it here line 27-line 42 - cristian
 }

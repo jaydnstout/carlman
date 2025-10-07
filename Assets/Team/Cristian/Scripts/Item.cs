@@ -9,7 +9,7 @@ public class Item : ScriptableObject
 {
 
    
-    //all this gives the items actions and help me sort them
+    //all this gives the items actions and help me sort them- cristian
     [Header("Only gameplay")]
     public TileBase tile;
     public ItemType type;

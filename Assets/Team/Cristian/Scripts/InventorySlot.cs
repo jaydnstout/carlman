@@ -9,7 +9,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     //code for the inv slots
     public void OnDrop(PointerEventData eventData)
     {
-        //lets you change the item into a different inventory slot
+        //lets you change the item into a different inventory slot- cristian
         if (transform.childCount == 0)
         {
             InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
