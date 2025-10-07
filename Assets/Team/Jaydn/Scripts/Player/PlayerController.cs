@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity = 2f;
     public float jumpForce = 5f;
 
+    GameObject itemHolding;
+
     void Start()
     {
         // Get references

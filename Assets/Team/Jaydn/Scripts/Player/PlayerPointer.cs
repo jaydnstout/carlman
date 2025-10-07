@@ -1,13 +1,13 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerPointer : MonoBehaviour
 {
     // References
-    GameObject collision;
-    GameObject trigger;
-    public bool canInteract;
     RawImage handImage;
+    public bool canInteract;
+    public GameObject itemHolding;
 
     void Start()
     {
@@ -19,9 +19,8 @@ public class PlayerPointer : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         // Show the hand image when the pointer enters an interactable object's trigger
-        if (other.gameObject.tag == "Interactable" )
+        if (other.gameObject.tag == "Interactable" && canInteract)
         {
-            canInteract = true;
             handImage.enabled = true;
         }
     }
@@ -29,10 +28,14 @@ public class PlayerPointer : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         // Hide the hand image when the pointer exits an interactable object's trigger
-        if (other.gameObject.tag == "Interactable")
+        if (other.gameObject.tag == "Interactable" && canInteract)
         {
-            canInteract = false;
             handImage.enabled = false;
         }
+    }
+
+    void Update()
+    {
+        
     }
 }

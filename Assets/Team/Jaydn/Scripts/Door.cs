@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
     float scaleX;
     bool interactable = false;
     bool isOpen = false;
-    
+
     void Start()
     {
         // Set initial rotation and find the pointer object
