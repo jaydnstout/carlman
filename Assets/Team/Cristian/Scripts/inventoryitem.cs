@@ -12,6 +12,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
 
    [HideInInspector] public Item item;
+  
     [HideInInspector] public Transform parentAfterDrag;
 
    

@@ -9,14 +9,14 @@ public class Item : ScriptableObject
 {
 
    
-
+    //all this gives the items actions and help me sort them
     [Header("Only gameplay")]
     public TileBase tile;
     public ItemType type;
     public ActionType actionType;
     
     [Header("Only UI")]
-
+    
     
     [Header("Both")]
     public Sprite image;
