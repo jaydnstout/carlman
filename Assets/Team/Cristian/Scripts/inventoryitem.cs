@@ -7,21 +7,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-
+    //
     [Header("UI")]
     public Image image;
 
-   [HideInInspector] public Item item;
+    [HideInInspector] public Item item;
   
     [HideInInspector] public Transform parentAfterDrag;
 
-   
+  
     public void InitialiseItem(Item newItem)
     {
         item = newItem;
         image.sprite = newItem.image;
     }
-
 
 
     //all this code allows you to drage the item around and resets it into a the item slot if its droped outside the inventory slot. - cristian

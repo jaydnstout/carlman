@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4741210570054048988}
   - component: {fileID: 7563909858895766728}
   - component: {fileID: 6678048475208500737}
-  - component: {fileID: 9099660084332015431}
+  - component: {fileID: -6084980938017099916}
   m_Layer: 5
   m_Name: item
   m_TagString: Untagged
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7482fac89c74a74b9bca8a827fce2af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f16d76777016594d88293bc7ddf8fad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9099660084332015431
+--- !u!114 &-6084980938017099916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,6 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95ad86209352024d9ce19ebf0ed5374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 6678048475208500737}
   item: {fileID: 0}
   parentAfterDrag: {fileID: 0}
