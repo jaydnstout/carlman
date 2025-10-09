@@ -51,6 +51,7 @@ public class PlayerStats : MonoBehaviour
             rb.AddRelativeForce(Vector3.forward * (pc.moveSpeed / 3) * fallDirection, ForceMode.Impulse);
             pc.isActive = false;
             dead = true;
+            Debug.Log("Player has died");
         }
     }
 }

@@ -8,12 +8,11 @@ public class Key : MonoBehaviour
     public string keyName;
     bool interactable = false;
     public bool playerHas = false;
-    GameObject player;
+    PlayerPointer pp;
 
-    private void Start()
+    void Start()
     {
-        // Find the player object
-        player = GameObject.Find("Player");
+        pp = GameObject.Find("Pointer").GetComponent<PlayerPointer>();
     }
 
     void OnTriggerStay(Collider other)
@@ -39,7 +38,7 @@ public class Key : MonoBehaviour
         // Pick up the key if the player clicks while the key is interactable
         if (Input.GetMouseButtonDown(0) && interactable)
         {
-            player.GetComponent<PlayerPointer>().itemHolding = gameObject;
+            pp.itemHolding = gameObject;
         }
     }
 }

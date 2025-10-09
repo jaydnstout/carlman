@@ -12,7 +12,6 @@ public class PlayerPointer : MonoBehaviour
     void Start()
     {
         // Get references
-        canInteract = false;
         handImage = GameObject.Find("Hand").GetComponent<RawImage>();
     }
 
@@ -36,6 +35,17 @@ public class PlayerPointer : MonoBehaviour
 
     void Update()
     {
-        
+        // Check if the player is holding an item
+        if (itemHolding != null)
+        {
+            itemHolding.GetComponent<Rigidbody>().useGravity = false;
+            itemHolding.transform.position = Vector3.Lerp(itemHolding.transform.position, transform.localPosition + (Vector3.forward * 0.5f), Time.deltaTime * 10);
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                itemHolding.GetComponent<Rigidbody>().useGravity = true;
+                itemHolding = null;
+            }
+        }
     }
 }

@@ -5,9 +5,11 @@ public class PlayerController : MonoBehaviour
 {
     // References
     [Header("References")]
-    PlayerStats ps;
-    public Rigidbody rb;
+    PlayerStats playerStats;
+    Rigidbody rigidbody;
     public GameObject cameraObject;
+    AudioSource audioSource;
+    PlayerSFX playerSFX;
 
     // State Parameters
     [Header("State Parameters")]
@@ -21,15 +23,17 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
+    float moveSoundTimer = 0.5f;
     public float lookSensitivity = 2f;
     public float jumpForce = 5f;
-
-    GameObject itemHolding;
 
     void Start()
     {
         // Get references
-        ps = GetComponent<PlayerStats>();
+        playerStats = GetComponent<PlayerStats>();
+        rigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        playerSFX = GetComponent<PlayerSFX>();
 
         // Lock and hide cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -39,16 +43,17 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         // Check if player is grounded
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && !isGrounded)
         {
             isGrounded = true;
+            audioSource.PlayOneShot(playerSFX.landSound);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
         // Check if player is no longer grounded
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && isGrounded)
         {
             isGrounded = false;
         }
@@ -62,11 +67,11 @@ public class PlayerController : MonoBehaviour
             // Determine move speed
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (ps.stamina > 0 && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
+                if (playerStats.stamina > 0 && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
                 {
                     // If moving and has stamina, use run speed and drain stamina
                     moveSpeed = runSpeed;
-                    ps.stamina -= 10 * Time.deltaTime;
+                    playerStats.stamina -= 10 * Time.deltaTime;
                 }
                 else
                 {
@@ -84,29 +89,64 @@ public class PlayerController : MonoBehaviour
             float moveVertical = Input.GetAxis("Vertical");
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             Vector3 velocity = transform.TransformDirection(movement) * moveSpeed;
-            velocity.y = rb.linearVelocity.y; // Preserve existing vertical velocity
-            rb.linearVelocity = velocity;
+            velocity.y = rigidbody.linearVelocity.y; // Preserve existing vertical velocity
+            rigidbody.linearVelocity = velocity;
 
-            // Jumping
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            // Play walking/running sounds
+            if (isGrounded)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                if (moveHorizontal != 0 || moveVertical != 0)
+                {
+                    int number;
+                    AudioClip clip;
+
+                    moveSoundTimer -= Time.deltaTime;
+
+                    if (moveSoundTimer <= 0)
+                    {
+                        number = Random.Range(0, 9);
+                        if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0)
+                        {
+                            clip = playerSFX.runSounds[number];
+                            moveSoundTimer = 0.33f;
+                        }
+                        else
+                        {
+                            clip = playerSFX.walkSounds[number];
+                            moveSoundTimer = 0.66f;
+                        }
+
+                        audioSource.PlayOneShot(clip);
+                        
+                    }
+                }
+                else
+                {
+                    moveSoundTimer = 0;
+                }
+
+                // Jumping
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                    audioSource.PlayOneShot(playerSFX.jumpSound);
+                }
             }
-        }
 
-        // Looking around
-        if (isActive && canLook && cameraObject != null)
-        {
-            // Get mouse input and rotate player and camera
-            float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
-            float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
-            transform.Rotate(0, mouseX, 0);
-            cameraObject.transform.Rotate(-mouseY, 0, 0);
+            // Looking around
+            if (isActive && canLook && cameraObject != null)
+            {
+                // Get mouse input and rotate player and camera
+                float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
+                float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
+                transform.Rotate(0, mouseX, 0);
+                cameraObject.transform.Rotate(-mouseY, 0, 0);
 
-            // Clamp camera vertical rotation
-            float cameraRotationX = cameraObject.transform.eulerAngles.x;
-            float playerRotationY = transform.eulerAngles.y;
-            cameraObject.transform.eulerAngles = new Vector3(cameraRotationX, playerRotationY, 0);
+                // Clamp camera vertical rotation
+                float cameraRotationX = cameraObject.transform.eulerAngles.x;
+                float playerRotationY = transform.eulerAngles.y;
+                cameraObject.transform.eulerAngles = new Vector3(cameraRotationX, playerRotationY, 0);
+            }
         }
     }
 }
