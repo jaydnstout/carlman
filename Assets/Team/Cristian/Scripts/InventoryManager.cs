@@ -3,26 +3,43 @@ using System.Collections.Generic;
 using System.Collections;
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance; 
+    public Item[] startItem;
+
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
-  
-    
-    
+
+
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    //start item(flashlight
+
+    public void Start()
+    {
+        foreach (var item in startItem)
+        {
+            AddItem(item);
+        }
+    }
+
+
     //selected slot colors and changing slots with number keys 1, 2, 3 - cristian
     int selectedSlot = -1;
-    //last part 26:45
-    private void Start()
-    {
-        ChangeSelectedSlot(0);
-    }
+    
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.inputString != null)
         {
-        } ChangeSelectedSlot(0);{
-          } ChangeSelectedSlot(1);{
-        } ChangeSelectedSlot(2); {
-       
+            bool isNumber = int.TryParse(Input.inputString, out int number);
+            if (isNumber && number > 0 && number < 4)
+            {
+                ChangeSelectedSlot(number - 1);
+            }
         }
     }
     void ChangeSelectedSlot(int newValue)
@@ -38,6 +55,10 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddItem(Item item)
     {
+
+
+
+
         //finds the empty slot- cristian
         for (int i = 0; i < inventorySlots.Length; i++)
         {
@@ -60,6 +81,19 @@ public class InventoryManager : MonoBehaviour
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
+
+    public Item GetSelectedItem( )
+    {
+        InventorySlot slot = inventorySlots[selectedSlot];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+        if (itemInSlot != null)
+        {
+            return itemInSlot.item;
+        }
+
+        return null;
+    }
+
 
 
 
