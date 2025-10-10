@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 14288500}
   - component: {fileID: 14288499}
   m_Layer: 5
-  m_Name: item frame
+  m_Name: item frame flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,6 +512,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &648791662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4351626425140254060, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+  m_PrefabInstance: {fileID: 1406612496}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &708407421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +1043,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 648791662}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.b
+      value: 0.44028127
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.r
+      value: 0.57916135
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1274,9 +1313,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot
       objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.b
+      value: 0.44028127
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.r
+      value: 0.57916135
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
     - target: {fileID: 7797296945680606229, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
       propertyPath: image
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751484760547091109, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: m_CellSize.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751484760547091109, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: m_CellSize.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751484760547091109, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751484760547091109, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1297,7 +1376,7 @@ GameObject:
   - component: {fileID: 1652466158}
   - component: {fileID: 1652466157}
   m_Layer: 5
-  m_Name: item frame (4)
+  m_Name: 'item frame (4) keys '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1398,7 +1477,7 @@ GameObject:
   - component: {fileID: 1944108718}
   - component: {fileID: 1944108717}
   m_Layer: 5
-  m_Name: item frame (3)
+  m_Name: food slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1731,6 +1810,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.b
+      value: 0.44028127
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: selectedColor.r
+      value: 0.57916135
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024858428624862231, guid: d6c234bfc71bcc84584a26d4ea9019b2, type: 3}
+      propertyPath: notSelectedColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1751,7 +1854,7 @@ GameObject:
   - component: {fileID: 2119273996}
   - component: {fileID: 2119273995}
   m_Layer: 5
-  m_Name: testgroup
+  m_Name: testgroup(you can hide this if you want its was just for tsting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

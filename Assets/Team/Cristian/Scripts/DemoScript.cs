@@ -22,5 +22,23 @@ public class DemoScript : MonoBehaviour
         }
     }
 
+    public void GetSelectedItem()
+    {
+        Item receivedItem = inventoryManager.GetSelectedItem();
+        if (receivedItem != null)
+        {
+            Debug.Log("received Item:" + receivedItem);
+        }
+        else
+        {
+            Debug.Log("NO rceived Item!");
+        }
+
+
+    }
+
+
+
+
 
 }
