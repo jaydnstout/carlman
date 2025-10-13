@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Pointer
   - Interactable
+  - TargetObject
   layers:
   - Default
   - TransparentFX
