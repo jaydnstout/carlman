@@ -24035,7 +24035,7 @@ GameObject:
   - component: {fileID: 1524657638}
   - component: {fileID: 1524657637}
   m_Layer: 0
-  m_Name: Ramp
+  m_Name: Stage ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28166,7 +28166,7 @@ GameObject:
   - component: {fileID: 1827274233}
   - component: {fileID: 1827274232}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: Courtyard wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32731,7 +32731,6 @@ SceneRoots:
   - {fileID: 855807201}
   - {fileID: 1641655900}
   - {fileID: 1277723028}
-  - {fileID: 1509240570}
   - {fileID: 1550021539}
   - {fileID: 919843301}
   - {fileID: 62909726}
@@ -32770,3 +32769,4 @@ SceneRoots:
   - {fileID: 951508760}
   - {fileID: 1724882605}
   - {fileID: 1660238380}
+  - {fileID: 1509240570}
