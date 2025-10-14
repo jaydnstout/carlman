@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject cameraObject;
     AudioSource audioSource;
     PlayerSFX playerSFX;
+    GameObject lastTouchedGround;
 
     // State Parameters
     [Header("State Parameters")]
@@ -46,7 +48,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Ground" && !isGrounded)
         {
             isGrounded = true;
-            audioSource.PlayOneShot(playerSFX.landSound);
+
+            // Jumping
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                audioSource.PlayOneShot(playerSFX.jumpSound, 6);
+            }
         }
     }
 
@@ -97,27 +105,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (moveHorizontal != 0 || moveVertical != 0)
                 {
-                    int number;
-                    AudioClip clip;
-
                     moveSoundTimer -= Time.deltaTime;
 
                     if (moveSoundTimer <= 0)
                     {
-                        number = Random.Range(0, 9);
                         if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0)
                         {
-                            clip = playerSFX.runSounds[number];
+                            audioSource.PlayOneShot(playerSFX.runSounds[Random.Range(0, playerSFX.runSounds.Length)], 6);
                             moveSoundTimer = 0.33f;
                         }
                         else
                         {
-                            clip = playerSFX.walkSounds[number];
-                            moveSoundTimer = 0.66f;
+                            audioSource.PlayOneShot(playerSFX.walkSounds[Random.Range(0, playerSFX.walkSounds.Length)], 6);
+                            moveSoundTimer = 0.5f;
                         }
-
-                        audioSource.PlayOneShot(clip);
-                        
                     }
                 }
                 else
@@ -125,12 +126,7 @@ public class PlayerController : MonoBehaviour
                     moveSoundTimer = 0;
                 }
 
-                // Jumping
-                if (Input.GetButtonDown("Jump") && isGrounded)
-                {
-                    rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                    audioSource.PlayOneShot(playerSFX.jumpSound);
-                }
+                
             }
 
             // Looking around
