@@ -7,11 +7,10 @@ public class PlayerController : MonoBehaviour
     // References
     [Header("References")]
     PlayerStats playerStats;
-    Rigidbody rigidbody;
+    Rigidbody rb;
     public GameObject cameraObject;
     AudioSource audioSource;
     PlayerSFX playerSFX;
-    GameObject lastTouchedGround;
 
     // State Parameters
     [Header("State Parameters")]
@@ -33,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         // Get references
         playerStats = GetComponent<PlayerStats>();
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         playerSFX = GetComponent<PlayerSFX>();
 
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
             // Jumping
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 audioSource.PlayOneShot(playerSFX.jumpSound, 6);
             }
         }
@@ -97,8 +96,8 @@ public class PlayerController : MonoBehaviour
             float moveVertical = Input.GetAxis("Vertical");
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             Vector3 velocity = transform.TransformDirection(movement) * moveSpeed;
-            velocity.y = rigidbody.linearVelocity.y; // Preserve existing vertical velocity
-            rigidbody.linearVelocity = velocity;
+            velocity.y = rb.linearVelocity.y; // Preserve existing vertical velocity
+            rb.linearVelocity = velocity;
 
             // Play walking/running sounds
             if (isGrounded)
@@ -111,12 +110,12 @@ public class PlayerController : MonoBehaviour
                     {
                         if (Input.GetKey(KeyCode.LeftShift) && playerStats.stamina > 0)
                         {
-                            audioSource.PlayOneShot(playerSFX.runSounds[Random.Range(0, playerSFX.runSounds.Length)], 6);
+                            audioSource.PlayOneShot(playerSFX.runSounds[Random.Range(0, playerSFX.runSounds.Length)], 2);
                             moveSoundTimer = 0.33f;
                         }
                         else
                         {
-                            audioSource.PlayOneShot(playerSFX.walkSounds[Random.Range(0, playerSFX.walkSounds.Length)], 6);
+                            audioSource.PlayOneShot(playerSFX.walkSounds[Random.Range(0, playerSFX.walkSounds.Length)], 2);
                             moveSoundTimer = 0.5f;
                         }
                     }

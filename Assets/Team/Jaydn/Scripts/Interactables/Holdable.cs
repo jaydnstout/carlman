@@ -24,6 +24,9 @@ public class Holdable : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        holdableSFX.audioSource.PlayOneShot(holdableSFX.dropSound, 3f);
+        if (collision.gameObject.tag != "Player")
+        {
+            holdableSFX.audioSource.PlayOneShot(holdableSFX.dropSound);
+        }
     }
 }

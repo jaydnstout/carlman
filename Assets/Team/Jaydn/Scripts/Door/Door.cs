@@ -38,11 +38,11 @@ public class Door : MonoBehaviour
             {
                 if (isOpen)
                 {
-                    doorSFX.audioSource.PlayOneShot(doorSFX.doorClose, 3f);
+                    doorSFX.audioSource.PlayOneShot(doorSFX.doorClose);
                 }
                 else
                 {
-                    doorSFX.audioSource.PlayOneShot(doorSFX.doorOpen, 3f);
+                    doorSFX.audioSource.PlayOneShot(doorSFX.doorOpen);
                 }
 
                 isOpen = !isOpen;
@@ -53,13 +53,13 @@ public class Door : MonoBehaviour
                 if (isOpen)
                 {
                     // Close the door
-                    doorSFX.audioSource.PlayOneShot(doorSFX.doorClose, 3f);
+                    doorSFX.audioSource.PlayOneShot(doorSFX.doorClose);
                     isOpen = false;
                 }
                 else
                 {
                     // Attempt to open a locked door
-                    doorSFX.audioSource.PlayOneShot(doorSFX.doorLocked, 3f);
+                    doorSFX.audioSource.PlayOneShot(doorSFX.doorLocked);
                 }
             }
         }
@@ -68,6 +68,7 @@ public class Door : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && interactableComponent.interactable && playerPointer.itemHolding == key)
         {
             isLocked = !isLocked;
+            doorSFX.audioSource.PlayOneShot(doorSFX.doorLocked);
         }
 
         // Smoothly rotate the door to open or closed position
