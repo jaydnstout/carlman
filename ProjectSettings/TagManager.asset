@@ -8,6 +8,7 @@ TagManager:
   - Pointer
   - Interactable
   - TargetObject
+  - Jose
   layers:
   - Default
   - TransparentFX

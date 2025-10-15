@@ -34,7 +34,7 @@ public class PlayerSFX : MonoBehaviour
 
         if (randomAmbienceTimer <= 0)
         {
-            audioSource.PlayOneShot(randomAmbience[Random.Range(0, randomAmbience.Length)], Random.Range(0.25f, 0.5f));
+            audioSource.PlayOneShot(randomAmbience[Random.Range(0, randomAmbience.Length)], Random.Range(0.125f, 0.25f));
             randomAmbienceTimer = Random.Range(ambienceTimerMinimum, ambienceTimerMaximum);
         }
     }

@@ -65,8 +65,9 @@ public class PlayerPointer : MonoBehaviour
             );
 
             // Throw the item when Q is pressed
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && itemHolding != null)
             {
+                itemHolding.transform.position += (transform.right * -0.5f);
                 ihRigidbody.useGravity = true;
                 ihRigidbody.constraints = RigidbodyConstraints.None;
                 ihRigidbody.linearVelocity = (transform.forward * 20) + (transform.up * 5);
