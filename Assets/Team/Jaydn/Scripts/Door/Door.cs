@@ -29,17 +29,8 @@ public class Door : MonoBehaviour
         scaleX = transform.localScale.x;
     }
 
-    void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.tag == "Jose" && !isLocked && !isOpen)
+        void Update()
         {
-            doorSFX.audioSource.PlayOneShot(doorSFX.doorOpen);
-            isOpen = true;
-        }
-    }
-
-    void Update()
-    {
         // Toggle door state on mouse click if it can be opened
         if (Input.GetMouseButtonDown(0) && interactableComponent.interactable)
         {
