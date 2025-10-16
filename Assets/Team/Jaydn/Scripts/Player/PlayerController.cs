@@ -124,6 +124,8 @@ public class PlayerController : MonoBehaviour
                 {
                     moveSoundTimer = 0;
                 }
+
+                
             }
 
             // Looking around
