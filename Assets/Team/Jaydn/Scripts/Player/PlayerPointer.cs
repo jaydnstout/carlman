@@ -50,19 +50,7 @@ public class PlayerPointer : MonoBehaviour
             ihRigidbody.useGravity = false;
             ihRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 
-            itemHolding.transform.position = Vector3.Lerp
-            (
-                itemHolding.transform.position,
-                transform.position - (transform.forward * 0.5f) + (transform.right * 0.5f) - (transform.up * 0.25f),
-                Time.deltaTime * 20f
-            );
-
-            itemHolding.transform.rotation = Quaternion.Lerp
-            (
-                itemHolding.transform.rotation,
-                transform.rotation * Quaternion.Euler(-90, 90, 0),
-                Time.deltaTime * 20f
-            );
+            
 
             // Throw the item when Q is pressed
             if (Input.GetKeyDown(KeyCode.Q))
@@ -74,5 +62,22 @@ public class PlayerPointer : MonoBehaviour
                 audioSource.PlayOneShot(playerSFX.jumpSound, 6f);
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        itemHolding.transform.position = Vector3.Lerp
+            (
+                itemHolding.transform.position,
+                transform.position - (transform.forward * 0.5f) + (transform.right * 0.5f) - (transform.up * 0.25f),
+                Time.deltaTime * 20f
+            );
+
+        itemHolding.transform.rotation = Quaternion.Lerp
+        (
+            itemHolding.transform.rotation,
+            transform.rotation * Quaternion.Euler(-90, 90, 0),
+            Time.deltaTime * 20f
+        );
     }
 }
